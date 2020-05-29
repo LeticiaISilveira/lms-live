@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate, login, logout
 from .forms import ContatoForm
 
 
@@ -21,3 +22,23 @@ def contato(request):
         {
             'form': form
         })
+
+
+def entrar(request):
+    erro = ''
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        usuario = authenticate(request, username=username, password=password)
+        if usuario:
+            login(request, usuario)
+            return redirect('/restrito/')
+        else:
+            erro = 'Usuário ou senha incorretos'
+
+    return render(request, 'entrar.html', {'erro': erro})
+
+
+def sair(request):
+    logout(request)
+    return redirect('/')

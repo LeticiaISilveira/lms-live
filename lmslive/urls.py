@@ -17,4 +17,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('website.urls')),
+    path('restrito/', include('restrito.urls')),
 ]

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Administração {% endblock %}
+
+{% block conteudo %} 
+    <section class="container container-fluid">
+        <h1>Área Administrativa</h1>
+        <div class="row">
+            <h2>Cadastro de Cursos</h2>
+            <a href="{% url 'restrito:curso-form' %}" class="btn btn-primary">Incluir Curso</a>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Sigla</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for curso in cursos %}
+                        <tr>
+                            <td>{{ curso.nome }}</td>
+                            <td>{{ curso.sigla }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+{% endblock %}
